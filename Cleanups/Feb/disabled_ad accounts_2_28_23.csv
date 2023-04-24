@@ -1,0 +1,23 @@
+﻿WorkspaceId,UserName,BundleId,IpAddress,ComputerName,State,RunningMode,Region,LastConnectionTime,DaysSinceLastLogin,Status
+ws-0nmnj32lb,alang2,wsb-6m4xgd4tz,10.135.74.183,VDICHWY-D4JAOO8,AVAILABLE,ALWAYS_ON,us-east-1,2023-02-21 12:58:27.819000-05:00,5,Disabled
+ws-dchxn85g1,allamas,wsb-6m4xgd4tz,10.135.71.188,VDICHWY-U2MLP75,AVAILABLE,ALWAYS_ON,us-east-1,No login registered,,Disabled
+ws-w717smt2b,sjackson39,wsb-6m4xgd4tz,10.135.71.74,VDICHWY-J095ON9,AVAILABLE,ALWAYS_ON,us-east-1,2023-02-11 16:27:21.303000-05:00,15,Disabled
+ws-3llzhj8lz,pkombin,wsb-83j5dqqlr,10.113.45.172,EC2AMAZ-K0M043R,STOPPED,AUTO_STOP,us-east-1,2023-01-31 10:50:29.374000-05:00,26,Disabled
+ws-wbgnmrj03,jstone11,wsb-6m4xgd4tz,10.135.74.156,VDICHWY-0999RG8,AVAILABLE,ALWAYS_ON,us-east-1,No login registered,,Disabled
+ws-cldwr57t3,HNayak,wsb-83j5dqqlr,10.113.25.50,EC2AMAZ-JLEVD0O,STOPPED,AUTO_STOP,us-east-1,2021-10-21 13:33:09.833000-04:00,493,Disabled
+ws-2ll3w9rs1,mv,wsb-6r88hkpq3,10.113.25.97,A-1REAMFCQ0EPOO,AVAILABLE,ALWAYS_ON,us-east-1,2022-11-09 12:17:04.618000-05:00,109,Disabled
+ws-6l0zjb58x,toneill,wsb-83j5dqqlr,10.113.38.230,EC2AMAZ-62IARS1,STOPPED,AUTO_STOP,us-east-1,No login registered,,Disabled
+ws-248ct34mm,ewalker1,wsb-6m4xgd4tz,10.135.69.138,VDICHWY-0RGQHPC,AVAILABLE,ALWAYS_ON,us-east-1,2023-01-17 10:22:11.916000-05:00,40,Disabled
+ws-28sk85t6s,sblakewenz,wsb-6m4xgd4tz,10.135.71.253,VDICHWY-2I1RKBN,AVAILABLE,ALWAYS_ON,us-east-1,2023-02-02 13:03:51.750000-05:00,24,Disabled
+ws-7w1w65n5r,rsorg,wsb-6m4xgd4tz,10.135.66.86,VDICHWY-J2978GJ,AVAILABLE,ALWAYS_ON,us-east-1,No login registered,,Disabled
+ws-dqbdg94g9,pmartine11,wsb-6m4xgd4tz,10.135.74.171,VDICHWY-KQ76FG7,AVAILABLE,ALWAYS_ON,us-east-1,2023-02-27 09:02:55.821000-05:00,0,Disabled
+ws-v4wzylx3m,dsmith146,wsb-6m4xgd4tz,10.135.73.35,VDICHWY-OPL974R,AVAILABLE,ALWAYS_ON,us-east-1,2023-01-30 17:48:38.815000-05:00,27,Disabled
+ws-bwkl4k203,kyork2,wsb-6m4xgd4tz,10.135.71.50,VDICHWY-7LCF8U7,AVAILABLE,ALWAYS_ON,us-east-1,2023-01-16 16:54:18.689000-05:00,41,Disabled
+ws-3sh0vsqs8,cmanboard,wsb-6m4xgd4tz,10.135.64.84,VDICHWY-UAUKGHG,AVAILABLE,ALWAYS_ON,us-east-1,2023-02-04 00:22:21.404000-05:00,23,Disabled
+ws-w7xxvf2lz,alang2,wsb-fnq7j7gpl,10.151.68.148,EC2AMAZ-LL42O0I,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-vcjykc42z,kyork2,wsb-1ytmbgt44,10.151.64.11,VDICHWY-9MCTL45,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-4nny8873c,dsmith146,wsb-1ytmbgt44,10.151.72.53,VDICHWY-Q1V1DS1,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-dln0dnd7v,sjackson39,wsb-1ytmbgt44,10.151.70.135,VDICHWY-04DL438,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-k5937q01z,ewalker1,wsb-1ytmbgt44,10.151.71.149,VDICHWY-HQV00B6,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-hx8nsdrlm,cmanboard,wsb-1ytmbgt44,10.151.75.88,VDICHWY-8O8N6RP,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
+ws-w5n1fwpx6,pmartine11,wsb-1ytmbgt44,10.151.78.213,VDICHWY-AJ59IO6,STOPPED,AUTO_STOP,us-west-2,No login registered,,Disabled
