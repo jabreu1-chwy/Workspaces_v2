@@ -32,28 +32,27 @@ def modify_ws(client, id):
     client.modify_workspace_properties(
         WorkspaceId=id,
         WorkspaceProperties={
-            "RunningMode": "AUTO_STOP",
-            "RunningModeAutoStopTimeoutInMinutes": 120,
+            "RunningMode": "ALWAYS_ON",
+            # "RunningModeAutoStopTimeoutInMinutes": 60,
         },
     )
-
+    print(f"Modifying {id}...")
 
 def main():
-    filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
+    filename = "./workspace_ids.csv"
     regions = ["us-east-1", "us-west-2"]
     processed_ids = []
     ids = import_csv(filename)
     # loops through the ids
     for id in ids:
         found = False
-        print(f"Processing {id}")
         # loop through regions
         for region in regions:
             client = boto3.client("workspaces", region_name=region)
             # gather workspace info
             workspaces = gather_workspace(id, client)
             # if it exist
-            if workspaces:
+            if workspaces == True:
                 found = True
                 # check if it was already processed
                 if id not in processed_ids:
@@ -66,7 +65,7 @@ def main():
                         print(f"ERROR: {id} | {e}")
         if not found:
             print(f"{id} not found in either region")
-    print(f"{processed_ids} completed")
+    print(f"{len(processed_ids)} modified")
 
 
 if __name__ == "__main__":

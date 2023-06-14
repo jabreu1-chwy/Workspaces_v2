@@ -21,8 +21,7 @@ def gather_workspace(id, client):
     )
     if len(checking_ws["Workspaces"]):
         return checking_ws
-    else:
-        return False
+    
 
 
 # check if available
@@ -37,22 +36,24 @@ def check_if_available(workspace_info, id, region, processed_ids):
         else:
             return False
 
-
 # start workspaces
 
 
-def start_workspaces(id, client):
+def start_workspaces(id, client, processed_ids, started):
     client.start_workspaces(
         StartWorkspaceRequests=[
             {"WorkspaceId": id},
         ]
     )
-
+    started.append(id)
+    processed_ids.append(id)
+    print(f"Starting {id}")
 
 def main():
-    filename = input("Enter the file path and name of file: ")
+    filename = "./workspace_ids.csv"
     regions = ["us-east-1", "us-west-2"]
     processed_ids = []
+    started = []
     ids = import_csv(filename)
 
     for id in ids:
@@ -70,11 +71,18 @@ def main():
                 if not workspace_info:
                     continue
                 # check if workspace is already running
-                check_if_available(workspace_info, id, region, processed_ids)
+                running = check_if_available(workspace_info, id, region, processed_ids)
+                if running == True:
+                    found = True
                 # if found start it
-                if not check_if_available:
-                    start_workspaces(id, client)
+                if running == False:
+                    start_workspaces(id, client, processed_ids, started)
+                    found = True
             except Exception as e:
                 print(f"ERROR: {id} | {e}")
-        if not found:
+        if found == False:
             print(f"{id} not found in either region")
+    print(f"{len(started)} sucessfully started")
+
+if __name__ == "__main__":
+    main()

@@ -51,7 +51,7 @@ def add_to_list(results, username, failed_workspaces, created_workspaces):
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     directoryid = "d-90677397c8"
-    bundleid = "wsb-6m4xgd4tz"
+    bundleid = "wsb-j9rnbmlv9"
     client = boto3.client("workspaces", region_name="us-east-1")
     created_workspaces = []
     failed_workspaces = []

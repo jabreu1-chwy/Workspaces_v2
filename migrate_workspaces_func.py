@@ -41,3 +41,5 @@ def main():
             print(f"ERROR: {id} | {e}")
         time.sleep(1)
     print(f"{processed} Workspaces migrated")
+
+main()
