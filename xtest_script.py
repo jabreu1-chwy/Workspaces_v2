@@ -12,9 +12,7 @@ import csv
 
 
 def describe(client, id):
-    response = client.describe_workspaces(
-        WorkspaceIds=[id]
-    )
+    response = client.describe_workspaces(WorkspaceIds=[id])
     return response
 
 

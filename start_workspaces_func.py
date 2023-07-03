@@ -21,7 +21,6 @@ def gather_workspace(id, client):
     )
     if len(checking_ws["Workspaces"]):
         return checking_ws
-    
 
 
 # check if available
@@ -36,6 +35,7 @@ def check_if_available(workspace_info, id, region, processed_ids):
         else:
             return False
 
+
 # start workspaces
 
 
@@ -48,6 +48,7 @@ def start_workspaces(id, client, processed_ids, started):
     started.append(id)
     processed_ids.append(id)
     print(f"Starting {id}")
+
 
 def main():
     filename = "./workspace_ids.csv"
@@ -83,6 +84,7 @@ def main():
         if found == False:
             print(f"{id} not found in either region")
     print(f"{len(started)} sucessfully started")
+
 
 if __name__ == "__main__":
     main()

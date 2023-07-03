@@ -83,8 +83,7 @@ def main():
                     # add to term count
                     termed_count += 1
             # catch error and print them
-            except ClientError as e:
-                print(f"Client Error for WorkspaceId: {id} : | Error: {e}")
+
             except Exception as e:
                 print(f"Exception error {id}| Error: {e}")
         # catch if not found in either region

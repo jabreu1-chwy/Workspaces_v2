@@ -41,8 +41,7 @@ def create_write_row(writer):
 
 
 def get_connection_status(client, id):
-    connection_status = client.describe_workspaces_connection_status(WorkspaceIds=[
-                                                                     id])
+    connection_status = client.describe_workspaces_connection_status(WorkspaceIds=[id])
     # print(json.dumps(connection_status, default=str, indent=4))
     return connection_status
 
@@ -75,8 +74,7 @@ def get_last_login(status):
                 # time difference
                 time_difference = current_date - LastKnownUserLogin
                 # round down to days
-                time_difference_days = int(
-                    time_difference.total_seconds() // 86400)
+                time_difference_days = int(time_difference.total_seconds() // 86400)
 
     except ValueError:
         LastKnownUserLogin = "Invalid timestamp format"
@@ -132,8 +130,7 @@ def main():
                 status = get_connection_status(client, id)
                 print(f"Processing {id}")
                 # calculate last known user login and time difference
-                time_difference_days, last_known_user_login = get_last_login(
-                    status)
+                time_difference_days, last_known_user_login = get_last_login(status)
 
                 try:
                     # write info to csv file

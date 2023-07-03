@@ -19,9 +19,9 @@ def migrate_workspace(client, id, bundle_id):
 
 
 def main():
-    filename = input("Enter the file path and name of file: ")
-    region = input(f"What region will you be working in? ")
-    bundle_id = input(f"What BundleId will you be migrating to? ")
+    filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
+    region = "us-east-1"
+    bundle_id = "wsb-wgk32kfjk"
     client = boto3.client("workspaces", region_name=region)
 
     # import id's into a list
@@ -42,4 +42,6 @@ def main():
         time.sleep(1)
     print(f"{processed} Workspaces migrated")
 
-main()
+
+if __name__ == "__main__":
+    main()

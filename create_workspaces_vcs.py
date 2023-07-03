@@ -26,8 +26,8 @@ def create_workspace(username, directoryid, bundleid, client):
                 "UserVolumeEncryptionEnabled": True,
                 "RootVolumeEncryptionEnabled": True,
                 "WorkspaceProperties": {
-                    "RunningMode": "ALWAYS_ON",
-                    # "RunningModeAutoStopTimeoutInMinutes": 60,
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60,
                 },
                 # "Tags": [
                 #     {"Key": "string", "Value": "string"},
@@ -44,7 +44,6 @@ def create_workspace(username, directoryid, bundleid, client):
 def add_to_list(results, username, failed_workspaces, created_workspaces):
     if len(results["FailedRequests"]):
         failed_workspaces.append(username)
-        print(f"{username} | {results['FailedRequests'][0]['ErrorMessage']}")
     elif len(results["PendingRequests"]):
         created_workspaces.append(username)
 
@@ -62,8 +61,8 @@ def print_results(created_workspaces, failed_workspaces):
 
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
-    directoryid = "d-90677397c8"
-    bundleid = "wsb-j9rnbmlv9"
+    directoryid = "d-9067b2fb26"
+    bundleid = "wsb-8xjqdxm7t"
     client = boto3.client("workspaces", region_name="us-east-1")
     created_workspaces = []
     failed_workspaces = []
