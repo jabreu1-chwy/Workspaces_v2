@@ -57,6 +57,7 @@ def main():
     termed_count = 0
     processed_ids = []
     workspace_ids = import_csv(filename)
+    retry_count = 0
 
     # loop through ids in list
     for id in workspace_ids:
@@ -89,8 +90,9 @@ def main():
         # catch if not found in either region
         if not found:
             print(f"{id} not found in either region")
-        # 2 second pause between each ID
-        time.sleep(2)
+        # exponential backoff strategy
+        retry_count += 1
+        time.sleep(2 ** retry_count)
     # print total amount of termed workspaces
     print(f"Sucessfully terminated {termed_count} Workspaces")
 

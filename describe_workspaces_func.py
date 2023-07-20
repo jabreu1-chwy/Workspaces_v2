@@ -2,7 +2,7 @@ import boto3
 import os
 import csv
 import datetime
-import json
+import time
 
 
 def paginate(method, **kwargs):
@@ -112,6 +112,7 @@ def main():
     regions = ["us-east-1", "us-west-2"]
     filename = input("Enter the filename: ")
     directory = input("Enter the file path you like this exported to: ")
+    retry_count = 0
 
     # opens csv and writes the headers
     with open(os.path.join(directory, filename), "w", newline="") as file:
@@ -129,6 +130,9 @@ def main():
                 id = workspace["WorkspaceId"]
                 status = get_connection_status(client, id)
                 print(f"Processing {id}")
+                # exponential backoff strategy
+                retry_count += 1
+                time.sleep(1 ** retry_count)
                 # calculate last known user login and time difference
                 time_difference_days, last_known_user_login = get_last_login(status)
 
