@@ -3,53 +3,31 @@ import time
 import csv
 from botocore.exceptions import ClientError
 
-# import workspace ids in to a list
-
-
+# import workspace IDs from a CSV file into a list
 def import_csv(filename):
     with open(filename, newline="", encoding="utf-8-sig") as inputfile:
-        ws_id = [row[0] for row in csv.reader(inputfile)]
-    return ws_id
+        ws_ids = [row[0] for row in csv.reader(inputfile)]
+    return ws_ids
 
-
-# check if workspace exist
-
-
+# check if a workspace exists
 def gather_workspace(id, client):
-    checking_ws = client.describe_workspaces(
-        WorkspaceIds=[
-            str(id),
-        ]
-    )
-    if len(checking_ws["Workspaces"]):
-        return True
-    else:
-        return False
-
+    checking_ws = client.describe_workspaces(WorkspaceIds=[str(id)])
+    return len(checking_ws["Workspaces"]) > 0
 
 # terminate workspaces
-
-
 def terminate_workspaces(id, client):
-    print(f"Processing {id}")
+    print(f"Terminating {id}")
     results = client.terminate_workspaces(
-        TerminateWorkspaceRequests=[
-            {"WorkspaceId": str(id)},
-        ]
+        TerminateWorkspaceRequests=[{"WorkspaceId": str(id)}]
     )
-
     return results
 
-
-# print message if termination fails
-
-
+# print a message if workspace termination fails
 def if_failed(term):
     if len(term["FailedRequests"]):
         failed_id = term["FailedRequests"]["WorkspaceId"]
         error_message = term["FailedRequests"]["ErrorMessage"]
-        print(f"Failed to term WorkspaceId: {failed_id} | {error_message}")
-
+        print(f"Failed to terminate WorkspaceId: {failed_id} | {error_message}")
 
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
@@ -57,11 +35,11 @@ def main():
     accounts = ["933881799506", "557431213659", "526793762506"]
     sts_client = boto3.client("sts", region_name="us-east-1")
     termed_count = 0
-    processed_ids = []
+    processed_ids = set()
     workspace_ids = import_csv(filename)
     retry_count = 0
 
-    #loop through the accounts
+    # Loop through the accounts
     for account in accounts:
         assume_role = sts_client.assume_role(
             RoleArn=f"arn:aws:iam::{account}:role/CHEWY-cross-jenkins",
@@ -70,12 +48,18 @@ def main():
         access_key = assume_role["Credentials"]["AccessKeyId"]
         secret_key = assume_role["Credentials"]["SecretAccessKey"]
         session_token = assume_role["Credentials"]["SessionToken"]
-        # loop through ids in list
-        for id in workspace_ids:
+
+        # Loop through the workspace IDs in the list
+        for ws_id in workspace_ids:
+            # Check if the ID was already processed
+            if ws_id in processed_ids:
+                continue
+
             found = False
-            # loop through regions
+
+            # Loop through the regions
             for region in regions:
-                # generate client for each region
+                # Generate a client for each region
                 client = boto3.client(
                     "workspaces",
                     region_name=region,
@@ -83,35 +67,37 @@ def main():
                     aws_secret_access_key=secret_key,
                     aws_session_token=session_token,
                 )
-                # check if id was already processed
-                if id in processed_ids:
-                    continue
-                workspaces = gather_workspace(id, client)
-                try:
-                    # if workspace id exist
-                    if workspaces:
-                        # flag as true
-                        found = True
-                        # terminate the workspace
-                        term = terminate_workspaces(id, client)
-                        # if it failed, print it
-                        if_failed(term)
-                        # add to procesed list
-                        processed_ids.append(id)
-                        # add to term count
-                        termed_count += 1
-                # catch error and print them
 
+                # Check if the workspace ID exists
+                workspace_exists = gather_workspace(ws_id, client)
+
+                try:
+                    # If workspace ws_id exists, terminate the workspace
+                    if workspace_exists:
+                        found = True
+                        termination_result = terminate_workspaces(ws_id, client)
+                        # If termination fails, print an error message
+                        if_failed(termination_result)
+                        processed_ids.add(ws_id)  # Add to processed list
+                        termed_count += 1  # Increase termination count
+                      # if it doesnt, continue to next ws_id  
+                    else:
+                        continue
+
+                # Catch and print any exceptions during termination
                 except Exception as e:
-                    print(f"Exception error {id}| Error: {e}")
-            # catch if not found in either region
+                    print(f"Exception error {ws_id} | Error: {e}")
+
+            # If the workspace ID was not found in any region
             if not found:
-                print(f"{id} not found in either region")
-            # exponential backoff strategy
+                print(f"{ws_id} not found in any region")
+
+            # Exponential backoff strategy before processing the next workspace
             retry_count += 1
-            time.sleep(2**retry_count)
-        # print total amount of termed workspaces
-        print(f"Sucessfully terminated {termed_count} Workspaces")
+            time.sleep(1 ** retry_count)
+
+    # Print the total number of terminated workspaces
+    print(f"Successfully terminated {termed_count} Workspaces")
 
 
 if __name__ == "__main__":

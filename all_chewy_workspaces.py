@@ -36,7 +36,9 @@ def create_write_row(writer):
     # creates header row in the CSV file
     writer.writerow(header_row)
 
-#loop through accounts and assumes role
+
+# loop through accounts and assumes role
+
 
 def assume_role(accounts, sts_client):
     for account in accounts:
@@ -48,6 +50,7 @@ def assume_role(accounts, sts_client):
         secret_key = assume_role["Credentials"]["SecretAccessKey"]
         session_token = assume_role["Credentials"]["SessionToken"]
     return access_key, secret_key, session_token
+
 
 # gather workspace connection info
 
