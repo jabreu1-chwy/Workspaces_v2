@@ -3,3 +3,4 @@ compare_list_to_ad.ps1
 *.xlsx
 tyler.py
 Cleanups/
+test.py

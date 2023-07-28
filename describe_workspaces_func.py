@@ -132,7 +132,7 @@ def main():
                 print(f"Processing {id}")
                 # exponential backoff strategy
                 retry_count += 1
-                time.sleep(1 ** retry_count)
+                time.sleep(1**retry_count)
                 # calculate last known user login and time difference
                 time_difference_days, last_known_user_login = get_last_login(status)
 
