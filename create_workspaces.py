@@ -63,7 +63,7 @@ def print_results(created_workspaces, failed_workspaces):
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     directoryid = "d-90677397c8"
-    bundleid = "wsb-j9rnbmlv9"
+    bundleid = "wsb-wgk32kfjk"
     client = boto3.client("workspaces", region_name="us-east-1")
     created_workspaces = []
     failed_workspaces = []

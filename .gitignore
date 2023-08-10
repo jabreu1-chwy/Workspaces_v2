@@ -4,5 +4,6 @@ compare_list_to_ad.ps1
 tyler.py
 Cleanups/
 test.py
-test.json
+*.json
 Tyler/
+workspace_ids.csv
