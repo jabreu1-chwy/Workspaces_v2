@@ -162,7 +162,7 @@ def main():
                     # variable for the workspace id
                     id = workspace["WorkspaceId"]
                     status = get_connection_status(client, id)
-                    print(f"Processing {id}")
+                    print(f"Processing {id} in Account: {account}")
                     # exponential backoff strategy
                     retry_count += 1
                     time.sleep(1**retry_count)
@@ -181,6 +181,8 @@ def main():
                         )
                     except Exception as e:
                         print(f"Error with {id} | {e}")
+    
+    print("Job Complete")
 
 
 if __name__ == "__main__":

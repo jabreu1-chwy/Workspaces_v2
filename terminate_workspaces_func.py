@@ -32,7 +32,7 @@ def if_failed(term):
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     regions = ["us-east-1", "us-west-2", "ap-northeast-1"]
-    accounts = ["933881799506", "557431213659", "526793762506"]
+    accounts = ["557431213659", "526793762506", "933881799506"]
     sts_client = boto3.client("sts", region_name="us-east-1")
     termed_count = 0
     processed_ids = set()
@@ -43,7 +43,7 @@ def main():
     for account in accounts:
         assume_role = sts_client.assume_role(
             RoleArn=f"arn:aws:iam::{account}:role/CHEWY-cross-jenkins",
-            RoleSessionName="Joel_Abreu_Workspace_Report",
+            RoleSessionName="Joel_Abreu_Monthly_Cleanup",
         )
         access_key = assume_role["Credentials"]["AccessKeyId"]
         secret_key = assume_role["Credentials"]["SecretAccessKey"]
@@ -90,7 +90,7 @@ def main():
 
             # If the workspace ID was not found in any region
             if not found:
-                print(f"{ws_id} not found in any region")
+                print(f"{ws_id} not found in {account}")
 
             # Exponential backoff strategy before processing the next workspace
             retry_count += 1
