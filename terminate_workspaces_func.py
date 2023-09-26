@@ -81,7 +81,7 @@ def main():
                         if_failed(termination_result)
                         processed_ids.add(ws_id)  # Add to processed list
                         termed_count += 1  # Increase termination count
-                      # if it doesnt, continue to next ws_id  
+                    # if it doesnt, continue to next ws_id  
                     else:
                         continue
 
