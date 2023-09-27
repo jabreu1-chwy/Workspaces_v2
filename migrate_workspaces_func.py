@@ -15,13 +15,18 @@ def import_csv(filename):
 
 
 def migrate_workspace(client, id, bundle_id):
-    client.migrate_workspace(SourceWorkspaceId=id, BundleId=bundle_id)
+   response = client.migrate_workspace(
+       SourceWorkspaceId=id, 
+       BundleId=bundle_id
+       )
+   print(response)
+   
 
 
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     region = "us-east-1"
-    bundle_id = "wsb-wgk32kfjk"
+    bundle_id = "wsb-fg2hv52m2"
     client = boto3.client("workspaces", region_name=region)
 
     # import id's into a list
