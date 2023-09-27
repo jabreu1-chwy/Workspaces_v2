@@ -20,8 +20,6 @@ def migrate_workspace(client, id, bundle_id):
        BundleId=bundle_id
        )
    print(response)
-   
-
 
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
