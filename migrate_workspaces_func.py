@@ -15,11 +15,12 @@ def import_csv(filename):
 
 
 def migrate_workspace(client, id, bundle_id):
-   response = client.migrate_workspace(
-       SourceWorkspaceId=id, 
-       BundleId=bundle_id
-       )
-   print(response)
+    response = client.migrate_workspace(
+    SourceWorkspaceId=id, 
+    BundleId=bundle_id
+    )
+    target = response['TargetWorkspaceId']
+    print(target)
 
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
