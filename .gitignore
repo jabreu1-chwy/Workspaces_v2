@@ -1,4 +1,4 @@
-compare_list_to_ad.ps1
+*.ps1
 *.csv
 *.xlsx
 tyler.py
