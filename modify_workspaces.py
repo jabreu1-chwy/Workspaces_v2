@@ -47,7 +47,7 @@ def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     regions = ["us-east-1", "us-west-2", "ap-northeast-1"]
     sts_client = boto3.client("sts", region_name="us-east-1")
-    accounts = ["557431213659", "526793762506"]
+    accounts = ["933881799506"]
     processed_ids = []
     ids = import_csv(filename)
 
