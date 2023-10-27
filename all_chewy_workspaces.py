@@ -129,7 +129,7 @@ def main():
     filename = input("Enter the filename: ")
     directory = input("Enter the file path you like this exported to: ")
     retry_count = 0
-    accounts = ["933881799506","526793762506","557431213659"]
+    accounts = ["933881799506"]
     #526793762506, 933881799506, 557431213659
     sts_client = boto3.client("sts", region_name="us-east-1")
 
