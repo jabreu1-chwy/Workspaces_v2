@@ -9,10 +9,12 @@ def import_csv(filename):
         ws_ids = [row[0] for row in csv.reader(inputfile)]
     return ws_ids
 
+
 # check if a workspace exists
 def gather_workspace(id, client):
     checking_ws = client.describe_workspaces(WorkspaceIds=[str(id)])
     return len(checking_ws["Workspaces"]) > 0
+
 
 # terminate workspaces
 def terminate_workspaces(id, client):
@@ -22,6 +24,7 @@ def terminate_workspaces(id, client):
     )
     return results
 
+
 # print a message if workspace termination fails
 def if_failed(term):
     if len(term["FailedRequests"]):
@@ -29,11 +32,12 @@ def if_failed(term):
         error_message = term["FailedRequests"]["ErrorMessage"]
         print(f"Failed to terminate WorkspaceId: {failed_id} | {error_message}")
 
+
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     regions = ["us-east-1", "us-west-2", "ap-northeast-1"]
-    accounts = ["557431213659"]
-    # "526793762506", "933881799506"
+    accounts = ["933881799506", "526793762506", "557431213659", "665636888158"]
+    # 526793762506, 933881799506, 557431213659, 665636888158
     sts_client = boto3.client("sts", region_name="us-east-1")
     termed_count = 0
     processed_ids = set()
@@ -81,7 +85,7 @@ def main():
                         if_failed(termination_result)
                         processed_ids.add(ws_id)  # Add to processed list
                         termed_count += 1  # Increase termination count
-                    # if it doesnt, continue to next ws_id  
+                    # if it doesnt, continue to next ws_id
                     else:
                         continue
 
@@ -95,7 +99,7 @@ def main():
 
             # Exponential backoff strategy before processing the next workspace
             retry_count += 1
-            time.sleep(1 ** retry_count)
+            time.sleep(1**retry_count)
 
     # Print the total number of terminated workspaces
     print(f"Successfully terminated {termed_count} Workspaces")

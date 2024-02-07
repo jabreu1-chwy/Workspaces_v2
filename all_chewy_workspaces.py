@@ -26,6 +26,7 @@ def create_write_row(writer):
         "ComputerName",
         "State",
         "RunningMode",
+        "RootVolumeSize",
         "TimeoutInMinutes",
         "Region",
         "LastConnectionTime",
@@ -113,6 +114,7 @@ def write_workspace_to_csv(
             workspace.get("ComputerName", "Null"),
             workspace["State"],
             workspace["WorkspaceProperties"]["RunningMode"],
+            workspace["WorkspaceProperties"]["RootVolumeSizeGib"],
             workspace["WorkspaceProperties"].get(
                 "RunningModeAutoStopTimeoutInMinutes", "Null"
             ),
@@ -129,8 +131,8 @@ def main():
     filename = input("Enter the filename: ")
     directory = input("Enter the file path you like this exported to: ")
     retry_count = 0
-    accounts = ["933881799506"]
-    #526793762506, 933881799506, 557431213659
+    accounts = ["665636888158", "933881799506", "526793762506", "557431213659"]
+    # 526793762506, 933881799506, 557431213659, 665636888158
     sts_client = boto3.client("sts", region_name="us-east-1")
 
     # opens csv and writes the headers
@@ -182,7 +184,7 @@ def main():
                         )
                     except Exception as e:
                         print(f"Error with {id} | {e}")
-    
+
     print("Job Complete")
 
 
