@@ -1,5 +1,6 @@
 *.ps1
 *.csv
+workspace_ids.csv
 *.xlsx
 tyler.py
 Cleanups/
