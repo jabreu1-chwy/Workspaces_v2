@@ -127,11 +127,11 @@ def write_workspace_to_csv(
 
 
 def main():
-    regions = ["us-east-1", "us-west-2", "ap-northeast-1"]
-    filename = input("Enter the filename: ")
+    regions = ["us-east-1"] #"us-east-1", "us-west-2", "ap-northeast-1"
+    filename = input("Enter the filename: ") + ".csv"
     directory = input("Enter the file path you like this exported to: ")
     retry_count = 0
-    accounts = ["665636888158", "933881799506", "526793762506", "557431213659"]
+    accounts = ["526793762506", "933881799506", "557431213659", "665636888158"]
     # 526793762506, 933881799506, 557431213659, 665636888158
     sts_client = boto3.client("sts", region_name="us-east-1")
 
