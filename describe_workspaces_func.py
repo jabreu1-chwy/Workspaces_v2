@@ -111,7 +111,7 @@ def write_workspace_to_csv(
 def main():
     regions = ["us-east-1", "us-west-2"]
     filename = input("Enter the filename: ")
-    directory = input("Enter the file path you like this exported to: ")
+    directory = input("Enter the file path you'd like this exported to: ")
     retry_count = 0
 
     # opens csv and writes the headers
