@@ -21,24 +21,23 @@ def get_workspaces(client):
 def restore(client, ids):
     for id in ids:
         print(f"Restoring {id}...")
-        response = client.rebuild_workspaces(
+        response = client.restore_workspaces(
             RebuildWorkspaceRequests=[
                 {"WorkspaceId": id},
             ]
         )
-        if len(response["FailedRequests"]):
-            ws_id = response["FailedRequests"][0]["WorkspaceId"]
-            error = response["FailedRequests"][0]["ErrorMessage"]
-            print(f"Reboot failed for {ws_id} | {error}")
+        return response
 
 
 
 
 def main():
-    client = boto3.client("workspaces")
-
+    client = boto3.client("workspaces", region_name="us-west-2")
     ids = get_workspaces(client)
-    restore(client, ids)
+    if ids:
+        restore(client, ids)
+    else:
+        print("No UNHEALTHY workspaces found.")
 
 
 if __name__ == "__main__":
