@@ -36,7 +36,10 @@ def main():
     client = boto3.client("workspaces")
 
     ids = get_workspaces(client)
-    reboot(client, ids)
+    if ids:
+        reboot(client, ids)
+    else:
+        print("No UNHEALTHY workspaces found.")
 
 
 if __name__ == "__main__":
