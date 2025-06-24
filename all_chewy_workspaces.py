@@ -131,8 +131,8 @@ def main():
     filename = input("Enter the filename: ") + ".csv"
     directory = input("Enter the file path you like this exported to: ")
     retry_count = 0
-    accounts = ["665636888158","933881799506","526793762506","557431213659"]
-    # 526793762506, 933881799506, 557431213659, 665636888158
+    accounts = ["526793762506","665636888158"]
+    # 526793762506, 665636888158
     sts_client = boto3.client("sts", region_name="us-east-1")
 
     # opens csv and writes the headers

@@ -1,7 +1,9 @@
+# trunk-ignore-all(black)
 import boto3
 import time
 import csv
 from botocore.exceptions import ClientError
+
 
 # import workspace IDs from a CSV file into a list
 def import_csv(filename):
@@ -36,7 +38,7 @@ def if_failed(term):
 def main():
     filename = "/Users/jabreu1/Documents/Workspaces/workspace_ids.csv"
     regions = ["us-east-1", "us-west-2", "ap-northeast-1"]
-    accounts = ["933881799506", "665636888158", "933881799506"]
+    accounts = ["526793762506"]
     # 526793762506, 933881799506, 557431213659, 665636888158
     sts_client = boto3.client("sts", region_name="us-east-1")
     termed_count = 0
