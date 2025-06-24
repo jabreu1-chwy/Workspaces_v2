@@ -1,5 +1,4 @@
 import boto3
-import json
 
 regions = ["us-east-1", "us-west-2"]
 

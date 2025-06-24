@@ -43,7 +43,7 @@ for workspace_id in workspace_ids:
             if not found:
                 print(f"{workspace_id} not found in either region")
 
-        except Exception or ClientError as e:
+        except (Exception, ClientError) as e:
             print(f"ERROR: {workspace_id} | {e}")
 
 print(f"{processed_count} Workspaces Rebuilt")

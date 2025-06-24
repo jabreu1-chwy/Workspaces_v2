@@ -73,18 +73,17 @@ def main():
                     continue
                 # check if workspace is already running
                 running = check_if_available(workspace_info, id, region, processed_ids)
-                if running == True:
+                if running:
                     found = True
                 # if found start it
-                if running == False:
+                if not running:
                     start_workspaces(id, client, processed_ids, started)
                     found = True
             except Exception as e:
                 print(f"ERROR: {id} | {e}")
-        if found == False:
+        if not found:
             print(f"{id} not found in either region")
-    print(f"{len(started)} sucessfully started")
-
+    print(f"{len(started)} successfully started")
 
 if __name__ == "__main__":
     main()

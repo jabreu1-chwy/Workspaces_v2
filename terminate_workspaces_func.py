@@ -1,8 +1,6 @@
-# trunk-ignore-all(black)
 import boto3
 import time
 import csv
-from botocore.exceptions import ClientError
 
 
 # import workspace IDs from a CSV file into a list
